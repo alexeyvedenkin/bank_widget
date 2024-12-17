@@ -12,3 +12,12 @@ def mask_account_card(full_row: Union[str]) -> Union[str]:
         mask = masks.get_mask_account(full_row[-20:])
         result = full_row.replace(full_row[-20:], mask)
     return result
+
+
+def get_date(full_date: Union[str]) -> Union[str]:
+    """Возвращает дату в формате ДД.ММ.ГГГГ
+    """
+    work_date = full_date[:10].split('-')
+    normal_date ='.'.join(reversed(work_date))
+
+    return normal_date
