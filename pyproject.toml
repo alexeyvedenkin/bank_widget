@@ -15,18 +15,10 @@ mypy = "^1.13.0"
 black = "^24.10.0"
 isort = "^5.13.2"
 
-[tool.flake8]
-# максимальная длина строки 119
+[flake8]
 max-line-length = 119
-# Файлы, которые не нужно форматировать
-exclude = '''
-(
- /(
-    \.git
-  | \.__pycache__
- )/
-)
-'''
+# ignore = E203, W503
+# exclude = .git, __pycache__, venv, .venv
 
 [tool.mypy]
 disallow_untyped_defs = true
@@ -48,7 +40,7 @@ exclude = '''
 
 [tool.isort]
 # максимальная длина строки 119
-max-line-length = 119
+line_length = 119
 
 
 [build-system]
