@@ -1,4 +1,5 @@
 from typing import Union
+
 from src import masks
 
 
@@ -18,6 +19,6 @@ def get_date(full_date: Union[str]) -> Union[str]:
     """Возвращает дату в формате ДД.ММ.ГГГГ
     """
     work_date = full_date[:10].split('-')
-    normal_date ='.'.join(reversed(work_date))
+    normal_date = '.'.join(reversed(work_date))
 
     return normal_date
