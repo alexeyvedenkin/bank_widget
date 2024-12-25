@@ -1,7 +1,7 @@
 from typing import Union
 
 
-def filter_by_state(work_dicts: Union[list[dict]], state='EXECUTED') -> Union[list[dict]]:
+def filter_by_state(work_dicts: Union[list[dict]], state: str = 'EXECUTED') -> Union[list[dict]]:
     """Возвращает список словарей, отфильтрованный по полю 'state'
     """
     result = []
@@ -11,9 +11,9 @@ def filter_by_state(work_dicts: Union[list[dict]], state='EXECUTED') -> Union[li
     return result
 
 
-def sort_by_date(work_dicts: Union[list[dict]], ascending=True) -> Union[list[dict]]:
+def sort_by_date(work_dicts: Union[list[dict]], ascending:bool = True) -> Union[list[dict]]:
     """Возвращает список словарей, упорядоченный по дате
     в порядке убывания
     """
-    result = sorted(work_dicts, key=lambda date: date.get('date'), reverse=ascending)
+    result = sorted(work_dicts, key=lambda date: date.get('date', None), reverse=ascending)
     return result
