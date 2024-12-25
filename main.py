@@ -1,5 +1,5 @@
 from src import masks, processing, widget
-from tests.test_dict import test
+from tests.test_data import *
 
 
 print(masks.get_mask_account('12345678901234567890'))
