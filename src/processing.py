@@ -1,26 +1,19 @@
 from typing import Union
 
-from tests.test_dict import test
 
-
-def filter_by_state(work_dict: Union[list[dict]]) -> Union[list[dict]]:
+def filter_by_state(work_dicts: Union[list[dict]], state='EXECUTED') -> Union[list[dict]]:
     """Возвращает список словарей, отфильтрованный по полю 'state'
     """
     result = []
-    for subject in work_dict:
-        if subject.get('state') == 'EXECUTED':
+    for subject in work_dicts:
+        if subject.get('state') == state:
             result.append(subject)
-
     return result
 
 
-def sort_by_date(work_dict: Union[list[dict]]) -> Union[list[dict]]:
+def sort_by_date(work_dicts: Union[list[dict]], ascending=True) -> Union[list[dict]]:
     """Возвращает список словарей, упорядоченный по дате
     в порядке убывания
     """
-    result = []
+    result = sorted(work_dicts, key=lambda date: date.get('date'), reverse=ascending)
     return result
-
-
-print(filter_by_state(test))
-
