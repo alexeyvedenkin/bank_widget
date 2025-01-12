@@ -7,7 +7,8 @@ for elem in try_data.data_for_masks:
 print()
 for elem in try_data.data_for_masks:
     row = elem.split()
-    print(masks.get_mask_card_number(row[-1]))
+    if len(row[-1]) == 16:
+        print(masks.get_mask_card_number(row[-1]))
 print()
 for elem in try_data.data_for_masks:
     print(widget.mask_account_card(elem))
