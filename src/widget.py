@@ -10,11 +10,11 @@ def mask_account_card(full_row: Union[str]) -> Union[str]:
     if work_row[0] not in ['счет', 'расчетный', 'account']:
         mask = masks.get_mask_card_number(work_row[-1])
         work_row[-1] = mask
-        result = ' '.join(work_row)
+        result = ' '.join(work_row).title()
     else:
         mask = masks.get_mask_account(work_row[-1])
         work_row[-1] = mask
-        result = ' '.join(work_row)
+        result = ' '.join(work_row).title()
     return result
 
 
