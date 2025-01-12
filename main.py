@@ -3,7 +3,8 @@ from src import masks, processing, try_data, widget
 
 for elem in try_data.data_for_masks:
     row = elem.split()
-    print(masks.get_mask_account(row[-1]))
+    if len(row[-1]) == 20:
+        print(masks.get_mask_account(row[-1]))
 print()
 for elem in try_data.data_for_masks:
     row = elem.split()
