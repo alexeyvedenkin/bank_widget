@@ -30,5 +30,5 @@ def test_get_mask_account_type_error():
 
 
 def test_get_mask_account_length_error(test_for_masks):
-    with pytest.raises(ValueError) as exc_info:
+    with pytest.raises(ValueError):
         get_mask_account('1234567890123456')
