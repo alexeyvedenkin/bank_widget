@@ -1,15 +1,22 @@
-from src import masks, processing, widget
-from tests.test_data import test
+from src import masks, processing, try_data, widget
 
 
-print(masks.get_mask_account('12345678901234567890'))
+for elem in try_data.data_for_masks:
+    row = elem.split()
+    if len(row[-1]) == 20:
+        print(masks.get_mask_account(row[-1]))
 print()
-print(masks.get_mask_card_number('1234567890123456'))
+for elem in try_data.data_for_masks:
+    row = elem.split()
+    if len(row[-1]) == 16:
+        print(masks.get_mask_card_number(row[-1]))
 print()
-print(widget.mask_account_card('Счет 73654108430135874305'))
+for elem in try_data.data_for_masks:
+    print(widget.mask_account_card(elem))
 print()
-print(widget.get_date('2024-03-1198695985929'))
+for elem in try_data.data_for_state_and_date:
+    print(widget.get_date(elem['date']))
 print()
-print(*processing.filter_by_state(test), sep='\n')
+print(*processing.filter_by_state(try_data.data_for_state_and_date), sep='\n')
 print()
-print(*processing.sort_by_date(test), sep='\n')
+print(*processing.sort_by_date(try_data.data_for_state_and_date), sep='\n')

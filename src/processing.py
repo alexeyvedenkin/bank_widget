@@ -11,7 +11,7 @@ def filter_by_state(work_dicts: Union[list[dict]], state: str = 'EXECUTED') -> U
     return result
 
 
-def sort_by_date(work_dicts: Union[list[dict]], ascending:bool = True) -> Union[list[dict]]:
+def sort_by_date(work_dicts: Union[list[dict]], ascending: bool = True) -> Union[list[dict]]:
     """Возвращает список словарей, упорядоченный по дате
     в порядке убывания
     """
