@@ -1,4 +1,4 @@
-from src import masks, processing, try_data, widget
+from src import generators, masks, processing, try_data, widget
 
 
 for elem in try_data.data_for_masks:
@@ -20,3 +20,5 @@ print()
 print(*processing.filter_by_state(try_data.data_for_state_and_date), sep='\n')
 print()
 print(*processing.sort_by_date(try_data.data_for_state_and_date), sep='\n')
+print()
+generators.card_number_generator(1, 5)
