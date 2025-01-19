@@ -1,22 +1,37 @@
 import random
 
 
-from typing import Union
-
-
 from src import try_data
 
 
-def filter_by_currency(transactions, currency="USD"):
-    result = [record for record in transactions if currency in record]
-    return result
+# from typing import Union
 
 
-# print(list(filter_by_currency(try_data.date_for_generators)))
+def filter_by_currency(transactions: list[dict], currency="USD"):
+    for transaction in transactions:
+        if transaction["operationAmount"]["currency"]["code"] == currency:
+            yield transaction
+
+# print(list(filter_by_currency(try_data.date_for_generators, 'USD')))
 
 
-def transaction_descriptions():
-    pass
+usd_transactions = list(filter_by_currency((try_data.date_for_generators), "USD"))
+for transact in usd_transactions:
+    print(transact)
+
+
+def transaction_descriptions(transactions: list[dict]):
+    """Функция возвращает описание каждой операции по очереди
+    """
+    result = (x.get("description") for x in transactions)  # выводим значение по ключу
+
+    for x in result:
+        yield x
+descriptions = list(transaction_descriptions(usd_transactions))
+print(*list(descriptions), sep="\n")
+
+
+print(transaction_descriptions(try_data.date_for_generators))
 
 
 def card_number_generator(start, stop):

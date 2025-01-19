@@ -21,4 +21,11 @@ print(*processing.filter_by_state(try_data.data_for_state_and_date), sep='\n')
 print()
 print(*processing.sort_by_date(try_data.data_for_state_and_date), sep='\n')
 print()
+print(generators.filter_by_currency(try_data.date_for_generators))
+print()
+# usd_transactions = list(generators.filter_by_currency((try_data.date_for_generators), "USD"))
+# for transact in usd_transactions:
+#     print(transact)
+
 generators.card_number_generator(1, 5)
+print()
