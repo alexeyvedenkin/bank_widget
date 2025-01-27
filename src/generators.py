@@ -4,20 +4,21 @@ import random
 from src import try_data
 
 
-# from typing import Union
+from src.try_data import *
 
 
-def filter_by_currency(transactions: list[dict], currency="USD"):
-    for transaction in transactions:
-        if transaction["operationAmount"]["currency"]["code"] == currency:
-            yield transaction
-
-# print(list(filter_by_currency(try_data.date_for_generators, 'USD')))
+from typing import Dict, Iterator, List, Union
 
 
-usd_transactions = list(filter_by_currency((try_data.date_for_generators), "USD"))
-for transact in usd_transactions:
-    print(transact)
+def filter_by_currency(my_dict, currency="USD"):
+    """Функция возвращает итератор, который поочередно выдает транзакции,
+    где валюта операции соответствует заданной (например, USD)
+    """
+    result = []
+    for trans in my_dict:
+        if trans["operationAmount"]["currency"]["code"] == currency:
+            result.append(trans)
+    return result
 
 
 def transaction_descriptions(transactions: list[dict]):
@@ -27,11 +28,6 @@ def transaction_descriptions(transactions: list[dict]):
 
     for x in result:
         yield x
-descriptions = list(transaction_descriptions(usd_transactions))
-print(*list(descriptions), sep="\n")
-
-
-print(transaction_descriptions(try_data.date_for_generators))
 
 
 def card_number_generator(start, stop):
