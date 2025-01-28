@@ -1,13 +1,9 @@
 import random
 
-
-from src import try_data
-
-
-from src.try_data import *
+# from src import try_data
 
 
-from typing import Dict, Iterator, List, Union
+# from typing import Dict, Iterator, List, Union
 
 
 def filter_by_currency(my_dict, currency="USD"):
@@ -36,4 +32,5 @@ def card_number_generator(start, stop):
         for j in range(4):
             card_number_cell = ''.join(str(random.randint(0, 9)) for _ in range(4))
             work_row.append(card_number_cell)
+
         print(' '.join(work_row))
