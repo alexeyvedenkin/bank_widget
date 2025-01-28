@@ -1,6 +1,5 @@
 from src import generators, masks, processing, try_data, widget
 
-
 for elem in try_data.data_for_masks:
     row = elem.split()
     if len(row[-1]) == 20:
@@ -21,10 +20,10 @@ print(*processing.filter_by_state(try_data.data_for_state_and_date), sep='\n')
 print()
 print(*processing.sort_by_date(try_data.data_for_state_and_date), sep='\n')
 print()
-print(*generators.filter_by_currency(try_data.date_for_generators), sep='\n')
+print(*generators.filter_by_currency(try_data.data_for_generators), sep='\n')
 print()
 for i in range(5):
-    print(list(generators.transaction_descriptions(try_data.date_for_generators)))
+    print(list(generators.transaction_descriptions(try_data.data_for_generators)))
 print()
 generators.card_number_generator(1, 5)
 print()
