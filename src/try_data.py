@@ -16,7 +16,7 @@ data_for_state_and_date = [
     {'id': 615064591, 'state': 'CANCELED', 'date': '2018-10-14T08:21:33.419441'}
 ]
 
-date_for_generators = [
+data_for_generators = [
     {
         "id": 939719570,
         "state": "EXECUTED",
