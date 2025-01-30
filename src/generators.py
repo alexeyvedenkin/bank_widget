@@ -67,7 +67,7 @@ for transact in usd_transactions:
 
 def transaction_descriptions(transaction: list[dict]) -> str:
     """
-    Функция возвращает описание каждой операции по очереди
+    Функция возвращает описание каждой операции по очереди по заданному ключу
     """
     result = (x.get("description") for x in transaction)  # выводим значение по ключу
 
