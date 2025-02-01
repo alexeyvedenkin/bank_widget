@@ -45,6 +45,6 @@ def test_transaction_descriptions_par(transaction: [dict], expected: [str]) -> N
 )
 
 
-def test_card_number_generator(start, stop, expected) -> None:
+def test_card_number_generator(start: int, stop: int, expected) -> None:
     result = list(card_number_generator(start, stop))
     assert result == expected
