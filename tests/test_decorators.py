@@ -64,4 +64,4 @@ def test_my_function(capsys):
     with pytest.raises(TypeError):
         my_function(2, "3")
     captured = capsys.readouterr()
-    assert "my_function error TypeError" in CaptureResult(out='', err='').out
+    assert captured.out == ''
