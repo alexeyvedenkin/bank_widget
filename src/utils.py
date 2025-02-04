@@ -3,7 +3,7 @@ import os
 from typing import Any, Dict, List
 
 
-def get_financial_transactions(path: str) -> List[Dict[str, Any]]:
+def get_financial_transactions(path: str) -> list[Any]:
     if not os.path.exists(path):
         return []
     with open(path, encoding="utf-8") as file_json:
@@ -11,6 +11,6 @@ def get_financial_transactions(path: str) -> List[Dict[str, Any]]:
     return data_json
 
 
-transactions = get_financial_transactions("C:\\Users\\Макс\\my_prj\\bank widget\\data\\operations.json")
+transactions = get_financial_transactions("C:\\Users\\admin\\PycharmProjects\\data\\operations.json")
 
-# print(transactions)
+print(transactions)
