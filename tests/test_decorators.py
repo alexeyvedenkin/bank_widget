@@ -2,7 +2,6 @@ import pytest
 import time
 from functools import wraps
 
-from _pytest.capture import CaptureResult
 
 from src.decorators import my_function
 from typing import Any, Callable, Optional, Union
@@ -47,8 +46,7 @@ def log(filename: Optional[str] = None) -> Callable:
 
 @log(filename="mylog.txt")
 def my_function(x: Union[int, float], y: Union[int, float]) -> Union[int, float]:
-    """
-    Получение результат суммирования двух чисел
+    """ Получение результат суммирования двух чисел
     """
     return x + y
 
