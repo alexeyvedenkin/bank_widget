@@ -1,0 +1,31 @@
+my_function ok
+my_function ok
+my_function ok
+my_function error TypeError. Inputs: (2, '3'), {}
+my_function ok
+my_function error TypeError. Inputs: (2, '3'), {}
+my_function ok
+my_function ok
+my_function ok
+my_function error TypeError. Inputs: (2, '3'), {}
+my_function ok
+my_function ok
+my_function error TypeError. Inputs: (2, '3'), {}
+my_function ok
+my_function ok
+my_function error TypeError. Inputs: (2, '3'), {}
+my_function ok
+my_function ok
+my_function error TypeError. Inputs: (2, '3'), {}
+my_function ok
+my_function ok
+my_function error TypeError. Inputs: (2, '3'), {}
+my_function ok
+my_function ok
+my_function error TypeError. Inputs: (2, '3'), {}
+my_function ok
+my_function ok
+my_function error TypeError. Inputs: (2, '3'), {}
+my_function ok
+my_function ok
+my_function error TypeError. Inputs: (2, '3'), {}
