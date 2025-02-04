@@ -4,6 +4,8 @@ from typing import Any, Dict, List
 
 
 def get_financial_transactions(path: str) -> list[Any]:
+    """ Получает данные из внешнего JSONz-файла и преобразовывает в объект Python
+    """
     if not os.path.exists(path):
         return []
     with open(path, encoding="utf-8") as file_json:
