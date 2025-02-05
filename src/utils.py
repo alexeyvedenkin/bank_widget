@@ -1,10 +1,10 @@
 import json
 import os
-from typing import Any, Dict, List
+from typing import Any
 
 
 def get_financial_transactions(path: str) -> list[Any]:
-    """ Получает данные из внешнего JSONz-файла и преобразовывает в объект Python
+    """ Получает данные из внешнего JSON-файла и преобразовывает в объект Python
     """
     if not os.path.exists(path):
         return []
@@ -13,6 +13,6 @@ def get_financial_transactions(path: str) -> list[Any]:
     return data_json
 
 
-transactions = get_financial_transactions("C:\\Users\\admin\\PycharmProjects\\data\\operations.json")
+transactions = get_financial_transactions("C:\\Users\\admin\\PycharmProjects\\bank_widget\\data\\operations.json")
 
-print(transactions)
+print(transactions, end='\n')
