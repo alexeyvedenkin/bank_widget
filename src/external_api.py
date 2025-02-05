@@ -4,12 +4,16 @@ from typing import Any, Dict, List
 # noinspection PyPackageRequirements
 import requests
 # noinspection PyPackageRequirements
+
 from dotenv import load_dotenv
 
 from src.utils import transactions
 
 # Загрузка переменных окружения из .env файла
 load_dotenv()
+
+# Получение значения переменной API_KEY из .env-файла
+apikey = os.getenv('API_KEY')
 
 
 def currency_conversion(transaction: dict) -> float:
@@ -28,7 +32,7 @@ def currency_conversion(transaction: dict) -> float:
             print("Ошибка: API ключ не найден. Убедитесь, что он задан в .env файле.")
             return 0.0
 
-        url = f"https://api.apilayer.com/exchangerates_data/convert?to=RUB&from={currency}&amount={amount}"
+        url = f"https://api.apilayer.com/exchangerates_data/convert?to=RUB&from{currency}&amount={amount}"
 
         headers = {"apikey": f"{apikey}"}
 
