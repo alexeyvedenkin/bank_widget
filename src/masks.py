@@ -24,8 +24,10 @@ def get_mask_card_number(card_number: Union[int, str]) -> Union[str]:
             logger.debug('Возвращаем маску для дальнейшей работы')
             return mask_card_number
         else:
+            logger.error('Некорректные данные в полученной строке')
             raise TypeError()
     else:
+        logger.error('Некорректная длина полученной строки')
         raise ValueError()
 
 

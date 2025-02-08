@@ -30,5 +30,3 @@ transactions = get_financial_transactions('data/operations.json')
 logger.debug('Вывод данных')
 for transact in transactions:
     print(transact, end='\n')
-
-print(type(transactions))
