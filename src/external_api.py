@@ -1,10 +1,7 @@
 import os
 from typing import Any, Dict, List
 
-# noinspection PyPackageRequirements
 import requests
-# noinspection PyPackageRequirements
-
 from dotenv import load_dotenv
 
 from src.utils import transactions
