@@ -15,4 +15,7 @@ def get_financial_transactions(path: str) -> list[Any]:
 
 transactions = get_financial_transactions("C:\\Users\\admin\\PycharmProjects\\bank_widget\\data\\operations.json")
 
-print(transactions, end='\n')
+for transact in transactions:
+    print(transact, end='\n')
+
+print(type(transactions))

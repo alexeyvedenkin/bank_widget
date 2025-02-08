@@ -1,5 +1,7 @@
-from src.utils import get_financial_transactions
 import os
+
+from src.utils import get_financial_transactions
+
 print("Current working directory:", os.getcwd())
 
 
