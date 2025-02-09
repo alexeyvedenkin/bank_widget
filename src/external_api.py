@@ -60,6 +60,6 @@ def process_all_transactions(transactions: List[Dict[str, Any]]) -> List[float]:
 
 
 # Пример использования функции с печатью результатов
-converted_results = process_all_transactions(transactions)
-for result in converted_results:
-    print(result)
+# converted_results = process_all_transactions(transactions)
+# for result in converted_results:
+#     print(result)

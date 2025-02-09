@@ -60,9 +60,9 @@ def filter_by_currency(my_dict: List[Dict], val_cur: str = "USD") -> Iterator[di
             yield transaction
 
 
-usd_transactions = list(filter_by_currency(transactions, "USD"))
-for transact in usd_transactions:
-    print(transact)
+# usd_transactions = list(filter_by_currency(transactions, "USD"))
+# for transact in usd_transactions:
+#     print(transact)
 
 
 def transaction_descriptions(transaction: list[dict]) -> str:
@@ -75,8 +75,8 @@ def transaction_descriptions(transaction: list[dict]) -> str:
         yield x
 
 
-descriptions = list(transaction_descriptions(usd_transactions))
-print(*list(descriptions), sep="\n")
+# descriptions = list(transaction_descriptions(usd_transactions))
+# print(*list(descriptions), sep="\n")
 
 
 def card_number_generator(start: int, stop: int) -> Iterator[str]:
@@ -91,5 +91,5 @@ def card_number_generator(start: int, stop: int) -> Iterator[str]:
             yield format_card_num
 
 
-for card in card_number_generator(0, 5):
-    print(card)
+# for card in card_number_generator(0, 5):
+#     print(card)
