@@ -1,4 +1,4 @@
-from typing import List, Dict, Iterator
+from typing import Dict, Iterator, List
 
 transactions = [
     {
