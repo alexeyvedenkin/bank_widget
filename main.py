@@ -1,4 +1,4 @@
-from src import generators, masks, processing, try_data, widget
+from src import generators, masks, processing, try_data, widget, utils
 
 for elem in try_data.data_for_masks:
     row = elem.split()
@@ -27,3 +27,5 @@ for i in range(5):
 print()
 generators.card_number_generator(1, 5)
 print()
+utils.get_financial_transactions('data/operations.json')
+print(type(utils.get_financial_transactions))
