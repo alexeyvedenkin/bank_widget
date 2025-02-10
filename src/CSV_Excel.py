@@ -35,8 +35,7 @@ def read_csv(filename: str) -> list[Any] | Any:
         return reading
 
 
-# transaction = read_csv("transactions.csv")
-#
+transaction = read_csv("transactions.csv")
 # print(transaction)
 
 
@@ -55,5 +54,5 @@ def read_excel(filename: str) -> List[Dict[str, Any]]:
     return transactions_list
 
 
-# operation_excel = read_excel("transactions_excel.xlsx")
+operation_excel = read_excel("transactions_excel.xlsx")
 # print(operation_excel)

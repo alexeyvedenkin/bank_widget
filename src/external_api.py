@@ -4,7 +4,6 @@ from typing import Any, Dict, List
 import requests
 from dotenv import load_dotenv
 
-from src.utils import transactions
 
 # Загрузка переменных окружения из .env файла
 load_dotenv()

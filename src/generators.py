@@ -60,7 +60,7 @@ def filter_by_currency(my_dict: List[Dict], val_cur: str = "USD") -> Iterator[di
             yield transaction
 
 
-# usd_transactions = list(filter_by_currency(transactions, "USD"))
+usd_transactions = list(filter_by_currency(transactions, "USD"))
 # for transact in usd_transactions:
 #     print(transact)
 
