@@ -2,6 +2,7 @@ import json
 import os
 import re
 from collections import Counter
+from typing import Any
 
 import pandas as pd
 
@@ -10,32 +11,30 @@ from src.CSV_Excel import read_csv, read_excel
 from src.widget import get_date, mask_account_card
 
 
-def read_file_json(file_path):
+def read_file_json(file_path: Any) -> Any:
     with open(file_path, "r", encoding="utf-8") as file:
         return json.load(file)
 
 
-def search_transactions_by_description(transactions, search_string):
-    """
-    Функция для поиска операций по заданной строке в описании.
+def search_transactions_by_description(transactions: Any, search_string: Any) -> list[Any]:
+    """Находит операции по заданной в описании строке
     """
     pattern = re.compile(re.escape(search_string), re.IGNORECASE)
     return [transaction for transaction in transactions if pattern.search(transaction.get("description", ""))]
 
 
-def count_transactions_by_category(transactions):
-    """
-    Функция для подсчета количества операций по категориям.
+def count_transactions_by_category(transactions: list) -> dict:
+    """Определяет количество операций по заданным категориям
     """
     categories = [transaction["description"] for transaction in transactions]
     return dict(Counter(categories))
 
 
-def filter_by_state(operations, status):
+def filter_by_state(operations: Any, status: Any) -> list[Any]:
     return [t for t in operations if isinstance(t.get("state", ""), str) and t.get("state", "").upper() == status]
 
 
-def filter_by_currency(transactions, currency_code):
+def filter_by_currency(transactions: Any, currency_code: Any) -> Any:
     filtered_transactions = [
         t for t in transactions if t.get("operationAmount", {}).get("currency", {}).get("code") == currency_code
     ]
@@ -43,9 +42,8 @@ def filter_by_currency(transactions, currency_code):
     return filtered_transactions
 
 
-def get_amount(transaction):
-    """
-    Функция для получения суммы транзакции, независимо от структуры данных.
+def get_amount(transaction: Any) -> Any:
+    """Определяет сумму транзакции, независимо от структуры данных
     """
     amount_keys = [
         ["operationAmount", "amount"],
@@ -64,7 +62,10 @@ def get_amount(transaction):
     return "не указана"
 
 
-def main():
+def main() -> None:
+    """Выполняет взаимодействие с пользователем,
+    осуществляет обработку данных в зависимости от выбора пользователя
+    """
     print("Привет! Добро пожаловать в программу работы с банковскими транзакциями.")
     print("Выберите необходимый пункт меню:")
     print("1. Получить информацию о транзакциях из JSON-файла")
@@ -144,17 +145,17 @@ def main():
         ).lower()
         if question_description == "да":
             search_string = input("Введите строку поиска: ").strip()
-            finaly_filter = search_transactions_by_description(status_operation_filter, search_string)
+            result_filter = search_transactions_by_description(status_operation_filter, search_string)
             break
         elif question_description == "нет":
-            finaly_filter = status_operation_filter
+            result_filter = status_operation_filter
             break
         else:
             print("Данного варианта нет в списке, попробуйте еще раз:")
 
-    print(f"Распечатываю итоговый список транзакций...\nВсего банковских операций в выборке: {len(finaly_filter)}\n")
-    if finaly_filter:
-        for trans in finaly_filter:
+    print(f"Распечатываю итоговый список транзакций...\nВсего банковских операций в выборке: {len(result_filter)}\n")
+    if result_filter:
+        for trans in result_filter:
             amount = get_amount(trans)
             currency = trans.get("operationAmount", {}).get("currency", {}).get("code", "не указана")
             if "Открытие вклада" in trans["description"]:

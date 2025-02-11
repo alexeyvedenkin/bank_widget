@@ -1,4 +1,4 @@
-from typing import Dict, Iterator, List
+from typing import Dict, Generator, Iterator, List
 
 transactions = [
     {
@@ -65,7 +65,7 @@ usd_transactions = list(filter_by_currency(transactions, "USD"))
 #     print(transact)
 
 
-def transaction_descriptions(transaction: list[dict]) -> str:
+def transaction_descriptions(transaction: list[dict]) -> Generator:
     """
     Функция возвращает описание каждой операции по очереди по заданному ключу
     """

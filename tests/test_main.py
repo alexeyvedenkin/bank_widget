@@ -1,6 +1,7 @@
-from unittest.mock import patch, mock_open
+from typing import Any
+from unittest.mock import mock_open, patch
 
-from main import get_amount, filter_by_state, read_file_json
+from main import filter_by_state, get_amount, read_file_json
 
 
 # Тест для функции read_file_json
@@ -12,7 +13,7 @@ from main import get_amount, filter_by_state, read_file_json
     ' {"amount": 40542, "currency": {"code": "RUB"}}, "state": '
     '"EXECUTED"}]',
 )
-def test_read_file_json(mock_file):
+def test_read_file_json(mock_file: Any) -> None:
     result = read_file_json("dummy_path")
     assert result == [
         {
@@ -26,14 +27,14 @@ def test_read_file_json(mock_file):
 
 
 # Тест для функции filter_by_state
-def test_filter_by_state():
+def test_filter_by_state() -> None:
     transactions = [{"state": "EXECUTED"}, {"state": "PENDING"}]
     result = filter_by_state(transactions, "EXECUTED")
     assert result == [{"state": "EXECUTED"}]
 
 
 # Тест для функции get_amount
-def test_get_amount():
+def test_get_amount() -> None:
     transaction = {"operationAmount": {"amount": 40542}}
     result = get_amount(transaction)
     assert result == 40542

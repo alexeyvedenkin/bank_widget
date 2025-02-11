@@ -4,12 +4,12 @@ from src.generators import (card_number_generator, filter_by_currency, transacti
                             usd_transactions)
 
 
-def test_filter_by_currency(filter_by_cur):
+def test_filter_by_currency(filter_by_cur: list[dict]) -> None:
     result = list(filter_by_currency(transactions, "USD"))
     assert result == filter_by_cur
 
 
-def test_transaction_descriptions(trans_des):
+def test_transaction_descriptions(trans_des: list[str]) -> None:
     assert list(transaction_descriptions(usd_transactions)) == trans_des
 
 
@@ -23,7 +23,7 @@ def test_transaction_descriptions(trans_des):
 )
 
 
-def test_transaction_descriptions_par(transaction: [dict], expected: [str]) -> None:
+def test_transaction_descriptions_par(transaction: list[list[dict]], expected: str) -> None:
     descriptions = transaction_descriptions([transaction])
     assert list(descriptions) == [expected]
 
@@ -45,6 +45,6 @@ def test_transaction_descriptions_par(transaction: [dict], expected: [str]) -> N
 )
 
 
-def test_card_number_generator(start: int, stop: int, expected) -> None:
+def test_card_number_generator(start: int, stop: int, expected: str) -> None:
     result = list(card_number_generator(start, stop))
     assert result == expected

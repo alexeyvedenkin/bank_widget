@@ -1,7 +1,5 @@
 import logging
-
 from typing import Union
-
 
 logger = logging.getLogger('masks')
 logger.setLevel(logging.DEBUG)
@@ -11,7 +9,7 @@ file_handler.setFormatter(file_formatter)
 logger.addHandler(file_handler)
 
 
-def get_mask_card_number(card_number: Union[int, str]) -> Union[str]:
+def get_mask_card_number(card_number: Union[int, str]) -> str:
     """Возвращает маску номера по правилу 'XXXX XX** **** XXXX'
         """
     logger.debug('Запрос данных для обработки')

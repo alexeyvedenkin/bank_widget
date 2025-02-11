@@ -1,10 +1,9 @@
 import csv
 import logging
 import os
-from typing import Any, Dict, List
+from typing import Any
 
 import pandas as pd
-
 
 logger = logging.getLogger("CSV_Excel")
 logger.setLevel(logging.DEBUG)
@@ -39,7 +38,7 @@ transaction = read_csv("transactions.csv")
 # print(transaction)
 
 
-def read_excel(filename: str) -> List[Dict[str, Any]]:
+def read_excel(filename: str) -> Any:
     """
     Function to read Excel file and return its content as a list of dictionaries
     """

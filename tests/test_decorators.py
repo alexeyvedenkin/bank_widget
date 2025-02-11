@@ -1,11 +1,10 @@
 # import time
 # from functools import wraps
-# from typing import Any, Callable, Optional, Union
+from typing import Any
 
 import pytest
 
 from src.decorators import my_function
-
 
 # def log(filename: Optional[str] = None) -> Callable:
 #     """
@@ -54,7 +53,7 @@ from src.decorators import my_function
 # my_function(1, 2)
 
 
-def test_my_function(capsys):
+def test_my_function(capsys: Any) -> None:
     """
     Тест проверяет, что `TypeError` действительно выбрасывается,
     и что в выводе содержится ожидаемое сообщение об ошибке
