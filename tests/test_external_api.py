@@ -1,6 +1,7 @@
 from unittest.mock import patch
 
-import os, pytest
+import os
+import pytest
 
 from src.external_api import currency_conversion, process_all_transactions
 
@@ -51,15 +52,17 @@ def test_currency_conversion(mock_get):
                                                'rates': {'RUB': 100}, 'result': 800000.0}
     assert currency_conversion(transaction) == 800000.0
 
+
 wrong_api = '123'
+
 
 def test_currency_conversion_not_apikey():
     if wrong_api != os.getenv("API_KEY") or not os.getenv("API_KEY"):
         pytest.raises(AssertionError, match="Ошибка: API ключ не найден. Убедитесь, что он задан в .env файле.")
 
 
-# def test_process_all_transactions():
-#     assert type(process_all_transactions(test_lst)) == list[float]
+def test_process_all_transactions():
+    assert type(process_all_transactions(test_lst)) == list
 #
 #
 # print(process_all_transactions(currency_conversion(test_lst)))

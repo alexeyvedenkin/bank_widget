@@ -4,7 +4,6 @@ from typing import Any, Dict, List
 import requests
 from dotenv import load_dotenv
 
-from src.utils import transactions
 
 # Загрузка переменных окружения из .env файла
 load_dotenv()
@@ -60,6 +59,6 @@ def process_all_transactions(transactions: List[Dict[str, Any]]) -> List[float]:
 
 
 # Пример использования функции с печатью результатов
-converted_results = process_all_transactions(transactions)
-for result in converted_results:
-    print(result)
+# converted_results = process_all_transactions(transactions)
+# for result in converted_results:
+#     print(result)
