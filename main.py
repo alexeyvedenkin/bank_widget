@@ -1,15 +1,12 @@
-import pandas as pd
-
-from src import generators, masks, processing, try_data, widget, utils
-
 import json
 import os
 import re
 from collections import Counter
 
-from src import masks, processing, widget
+import pandas as pd
+
+from src import generators, masks, processing, try_data, utils, widget
 from src.CSV_Excel import read_csv, read_excel
-# from src.processing import sorted_list
 from src.widget import get_date, mask_account_card
 
 
