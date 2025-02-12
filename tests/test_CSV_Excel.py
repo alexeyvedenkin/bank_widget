@@ -2,7 +2,7 @@ from typing import Any
 from unittest.mock import patch
 
 
-def read_csv() -> dict:
+def try_read_csv() -> dict:
     """Настраиваем mock для функции read_csv
     """
     return {
@@ -35,7 +35,7 @@ def test_read_csv(mock_read_csv: Any) -> None:
     }
 
     # Вызов функции read_csv
-    result = read_csv()
+    result = try_read_csv()
 
     # Ожидаемый результат
     expected_result = {
@@ -58,7 +58,11 @@ if __name__ == "__main__":
     test_read_csv()
 
 
-def read_excel() -> dict:
+def test_read_csv_error_no_file():
+    assert 'filename' != ''
+
+
+def try_read_excel() -> dict:
     """Настраиваем mock для функции read_excel
     """
     return {
@@ -91,7 +95,7 @@ def test_read_excel(mock_read_excel: Any) -> None:
     }
 
     # Вызов функции read_csv
-    result = read_excel()
+    result = try_read_excel()
 
     # Ожидаемый результат
     expected_result = {

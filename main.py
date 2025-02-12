@@ -63,8 +63,8 @@ def get_currency(transaction: Any) -> Any:
     for keys in currency_keys:
         value = transaction
         try:
-            for currency_key in keys:
-                value = value['key']
+            for key in keys:
+                value = value[key]
             return value
         except KeyError:
             continue
@@ -75,29 +75,33 @@ def main() -> None:
     """Выполняет взаимодействие с пользователем,
     осуществляет обработку данных в зависимости от выбора пользователя
     """
-    print("Привет! Добро пожаловать в программу работы с банковскими транзакциями.")
-    print("Выберите необходимый пункт меню:")
-    print("1. Получить информацию о транзакциях из JSON-файла")
-    print("2. Получить информацию о транзакциях из CSV-файла")
-    print("3. Получить информацию о транзакциях из XLSX-файла")
+    try:
+        print("Привет! Добро пожаловать в программу работы с банковскими транзакциями.")
+        print("Выберите необходимый пункт меню:")
+        print("1. Получить информацию о транзакциях из JSON-файла")
+        print("2. Получить информацию о транзакциях из CSV-файла")
+        print("3. Получить информацию о транзакциях из XLSX-файла")
 
-    work_file = input("Ваш выбор: ").strip()
+        work_file = input("Ваш выбор: ").strip()
 
-    while True:
-        if work_file == "1":
-            print("Для обработки выбран JSON-файл")
-            read_file = utils.get_financial_transactions(os.path.join("data/operations.json"))
-            break
-        elif work_file == "2":
-            print("Для обработки выбран CSV-файл")
-            read_file = CSV_Excel.read_csv('transactions.csv')
-            break
-        elif work_file == "3":
-            print("Для обработки выбран XLSX-файл")
-            read_file = CSV_Excel.read_excel('transactions_excel.xlsx')
-            break
-        else:
-            work_file = input("Данного варианта нет в списке, попробуйте еще раз:\nВаш выбор: ").strip()
+        while True:
+            if work_file == "1":
+                print("Для обработки выбран JSON-файл")
+                read_file = utils.get_financial_transactions(os.path.join("data/operations.json"))
+                break
+            elif work_file == "2":
+                print("Для обработки выбран CSV-файл")
+                read_file = CSV_Excel.read_csv('transactions.csv')
+                break
+            elif work_file == "3":
+                print("Для обработки выбран XLSX-файл")
+                read_file = CSV_Excel.read_excel('transactions_excel.xlsx')
+                break
+            else:
+                work_file = input("Данного варианта нет в списке, попробуйте еще раз:\nВаш выбор: ").strip()
+    except Exception(KeyboardInterrupt) as e:
+        return None
+
 
     status_operation = (
         input(
