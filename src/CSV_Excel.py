@@ -34,10 +34,6 @@ def read_csv(filename: str) -> list[Any] | Any:
         return reading
 
 
-transaction = read_csv("transactions.csv")
-# print(transaction)
-
-
 def read_excel(filename: str) -> Any:
     """
     Function to read Excel file and return its content as a list of dictionaries
@@ -50,8 +46,11 @@ def read_excel(filename: str) -> Any:
     # Convert DataFrame to list of dictionaries
     transactions_list = reading_excel.to_dict("records")
     logger.info("Окончание загрузки Excel файла")
+
     return transactions_list
 
 
-operation_excel = read_excel("transactions_excel.xlsx")
-# print(operation_excel)
+if __name__ == '__main__':
+    print(*read_csv("transactions.csv")[:5], sep='\n')
+    print()
+    print(*read_excel("transactions_excel.xlsx")[:5], sep='\n')
