@@ -1,4 +1,4 @@
-from typing import Dict, Generator, Iterator, List
+from typing import Any, Generator, Iterator
 
 transactions = [
     {
@@ -49,16 +49,19 @@ transactions = [
 ]
 
 
-def filter_by_currency(my_dict: List[Dict], val_cur: str = "USD") -> Iterator[dict]:
+def filter_by_currency(my_dict: Any, val_cur: str = "USD") -> Any:
     """
     Функция возвращает итератор, который поочередно выдает транзакции,
     где валюта операции соответствует заданной (например, USD)
     """
 
     for transaction in my_dict:
-        if transaction["operationAmount"]["currency"]["code"] == val_cur:
-            yield transaction
-
+        if transaction.get("operationAmount"):
+            if transaction["operationAmount"]["currency"]["code"] == val_cur:
+                yield transaction
+        elif transaction.get("currency_code"):
+            if transaction["currency_code"] == val_cur:
+                yield transaction
 
 usd_transactions = list(filter_by_currency(transactions, "USD"))
 # for transact in usd_transactions:
@@ -93,3 +96,9 @@ def card_number_generator(start: int, stop: int) -> Iterator[str]:
 
 # for card in card_number_generator(0, 5):
 #     print(card)
+
+
+# if __name__ == "__main__":
+#     usd_transactions = list(filter_by_currency(transactions, "USD"))
+#     for transact in usd_transactions:
+#         print(transact)
