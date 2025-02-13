@@ -58,7 +58,7 @@ if __name__ == "__main__":
     test_read_csv()
 
 
-def test_read_csv_error_no_file():
+def test_read_csv_error_no_file() -> None:
     assert 'filename' != ''
 
 

@@ -63,6 +63,7 @@ def filter_by_currency(my_dict: Any, val_cur: str = "USD") -> Any:
             if transaction["currency_code"] == val_cur:
                 yield transaction
 
+
 usd_transactions = list(filter_by_currency(transactions, "USD"))
 # for transact in usd_transactions:
 #     print(transact)

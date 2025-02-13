@@ -102,7 +102,7 @@ def main() -> None:
                 break
             else:
                 work_file = input("Данного варианта нет в списке, попробуйте еще раз:\nВаш выбор: ").strip()
-    except Exception(KeyboardInterrupt):
+    except ValueError:
         return None
 
     status_operation = (
@@ -137,14 +137,10 @@ def main() -> None:
                 input("Отсортировать по возрастанию или по убыванию?\nВаш выбор: ").strip().lower()
             )
             if question_sort_data_reverse in ["по убыванию", "down"]:
-                # ascending = question_sort_data_reverse in ["по убыванию", "down"]
                 sorted_data = processing.sort_by_date(status_operation_filter, ascending=True)
-                # status_operation_filter.sort(key=lambda t: t.get("date", ""), reverse=reverse)
                 break
             elif question_sort_data_reverse in ["по возрастанию", "up"]:
-                # ascending= question_sort_data_reverse not in ["по возрастанию", "up"]
                 sorted_data = processing.sort_by_date(status_operation_filter, ascending=False)
-                # status_operation_filter.sort(key=lambda t: t.get("date", ""), reverse=reverse)
                 break
         elif question_sort_data in ["нет", "no"]:
             break

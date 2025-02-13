@@ -1,5 +1,6 @@
 import pytest
 
+from typing import Any
 from src.generators import (card_number_generator, filter_by_currency, transaction_descriptions, transactions,
                             usd_transactions)
 
@@ -23,7 +24,7 @@ def test_transaction_descriptions(trans_des: list[str]) -> None:
 )
 
 
-def test_transaction_descriptions_par(transaction: list[list[dict]], expected: str) -> None:
+def test_transaction_descriptions_par(transaction: dict[Any, Any], expected: str) -> None:
     descriptions = transaction_descriptions([transaction])
     assert list(descriptions) == [expected]
 
