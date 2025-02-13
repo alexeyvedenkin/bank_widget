@@ -3,8 +3,11 @@ import re
 from collections import Counter
 from typing import Any
 
-from src import CSV_Excel, processing, utils, widget
+from src import CSV_Excel, generators, processing, utils, widget
 from src.widget import get_date, mask_account_card
+
+
+global sorted_data
 
 
 def search_transactions_by_description(transactions: Any, search_string: Any) -> list[Any]:
@@ -21,14 +24,14 @@ def count_transactions_by_category(transactions: list) -> dict:
     return dict(Counter(categories))
 
 
-def filter_by_currency(transactions: Any, currency_code: Any) -> Any:
-    filtered_transactions = [
-        t for t in transactions
-        if t.get("operationAmount", {}).get("currency", {}).get("code") == currency_code
-        or t.get("currency_code") == currency_code
-    ]
-    print(f"Фильтруем транзакции по валюте: {currency_code}, найдено {len(filtered_transactions)} транзакций")
-    return filtered_transactions
+# def filter_by_currency(transactions: Any, currency_code: Any) -> Any:
+#     filtered_transactions = [
+#         t for t in transactions
+#         if t.get("operationAmount", {}).get("currency", {}).get("code") == currency_code
+#         or t.get("currency_code") == currency_code
+#     ]
+#     print(f"Фильтруем транзакции по валюте: {currency_code}, найдено {len(filtered_transactions)} транзакций")
+#     return filtered_transactions
 
 
 def get_amount(transaction: Any) -> Any:
@@ -51,24 +54,24 @@ def get_amount(transaction: Any) -> Any:
     return "не указана"
 
 
-def get_currency(transaction: Any) -> Any:
-    """Определяет валюту транзакции по выбору пользователя
-    """
-    currency_keys = [
-        ["operationAmount", "amount", "code"],
-        ["currency_code"],
-        ["value"],
-        # Добавьте другие ключи здесь, если нужно
-    ]
-    for keys in currency_keys:
-        value = transaction
-        try:
-            for key in keys:
-                value = value[key]
-            return value
-        except KeyError:
-            continue
-    return "не указана"
+# def get_currency(transaction: Any) -> Any:
+#     """Определяет валюту транзакции по выбору пользователя
+#     """
+#     currency_keys = [
+#         ["operationAmount", "amount", "code"],
+#         ["currency_code"],
+#         ["value"],
+#         # Добавьте другие ключи здесь, если нужно
+#     ]
+    # for keys in currency_keys:
+    #     value = transaction
+    #     try:
+    #         for key in keys:
+    #             value = value[key]
+    #         return value
+    #     except KeyError:
+    #         continue
+    # return "не указана"
 
 
 def main() -> None:
@@ -99,9 +102,8 @@ def main() -> None:
                 break
             else:
                 work_file = input("Данного варианта нет в списке, попробуйте еще раз:\nВаш выбор: ").strip()
-    except Exception(KeyboardInterrupt) as e:
+    except Exception(KeyboardInterrupt):
         return None
-
 
     status_operation = (
         input(
@@ -126,6 +128,7 @@ def main() -> None:
                 .strip()
                 .upper()
             )
+    print(*status_operation_filter[:5], sep='\n')
 
     while True:
         question_sort_data = input("Отсортировать операции по дате? Да/Нет\nВаш выбор: ").lower()
@@ -134,23 +137,26 @@ def main() -> None:
                 input("Отсортировать по возрастанию или по убыванию?\nВаш выбор: ").strip().lower()
             )
             if question_sort_data_reverse in ["по убыванию", "down"]:
-                reverse = question_sort_data_reverse in ["по убыванию", "down"]
-                status_operation_filter.sort(key=lambda t: t.get("date", ""), reverse=reverse)
+                # ascending = question_sort_data_reverse in ["по убыванию", "down"]
+                sorted_data = processing.sort_by_date(status_operation_filter, ascending=True)
+                # status_operation_filter.sort(key=lambda t: t.get("date", ""), reverse=reverse)
                 break
             elif question_sort_data_reverse in ["по возрастанию", "up"]:
-                reverse = question_sort_data_reverse not in ["по возрастанию", "up"]
-                status_operation_filter.sort(key=lambda t: t.get("date", ""), reverse=reverse)
+                # ascending= question_sort_data_reverse not in ["по возрастанию", "up"]
+                sorted_data = processing.sort_by_date(status_operation_filter, ascending=False)
+                # status_operation_filter.sort(key=lambda t: t.get("date", ""), reverse=reverse)
                 break
         elif question_sort_data in ["нет", "no"]:
             break
         else:
             print("Данного варианта нет в списке, попробуйте еще раз:")
-
+    print(*sorted_data[:5], sep='\n')
     while True:
         question_currency = input("Выводить транзакции по определенной валюте? Да/Нет\nВаш выбор: ").lower()
         if question_currency in ["да", "yes"]:
-            currency_code = input("Введите код валюты (например, RUB, USD): ").strip().upper()
-            status_operation_filter = filter_by_currency(status_operation_filter, currency_code)
+            currency_code = input("Введите код валюты (например, RUB, USD): ").upper()
+            print(currency_code)
+            status_operation_filter = list(generators.filter_by_currency(sorted_data, val_cur=currency_code))
             break
         elif question_currency in ["нет", "no"]:
             break
@@ -183,7 +189,7 @@ def main() -> None:
     if result_filter:
         for trans in result_filter:
             amount = float(get_amount(trans))
-            currency = get_currency(trans)
+            currency = currency_code
             # currency = trans.get("operationAmount", {}).get("currency", {}).get("code", {get_currency})
             if "Открытие вклада" in trans["description"]:
                 print(
