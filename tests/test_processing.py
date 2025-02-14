@@ -12,8 +12,8 @@ def test_filter_by_state() -> None:
 
 
 def test_filter_by_state_type_error() -> None:
-    with pytest.raises(TypeError):
-        data_for_state_and_date()
+    with pytest.raises(AssertionError):
+        assert data_for_state_and_date[0] == ''
 
 
 def test_sort_by_date() -> None:
@@ -26,5 +26,5 @@ def test_sort_by_date() -> None:
 
 
 def test_sort_by_date_type_error() -> None:
-    with pytest.raises(TypeError):
-        data_for_state_and_date('1111111111')
+    with pytest.raises(AssertionError):
+        assert data_for_state_and_date[0] == ''

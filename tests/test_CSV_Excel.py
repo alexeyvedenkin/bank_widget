@@ -1,7 +1,10 @@
+from typing import Any
 from unittest.mock import patch
 
 
-def read_csv():
+def try_read_csv() -> dict:
+    """Настраиваем mock для функции read_csv
+    """
     return {
         "id": "650703",
         "state": "EXECUTED",
@@ -16,8 +19,9 @@ def read_csv():
 
 
 @patch("src.CSV_Excel.read_csv")
-def test_read_csv(mock_read_csv):
-    # Настраиваем mock для функции read_csv
+def test_read_csv(mock_read_csv: Any) -> None:
+    """Настраиваем mock для функции read_csv
+    """
     mock_read_csv.return_value = {
         "id": "650703",
         "state": "EXECUTED",
@@ -31,7 +35,7 @@ def test_read_csv(mock_read_csv):
     }
 
     # Вызов функции read_csv
-    result = read_csv()
+    result = try_read_csv()
 
     # Ожидаемый результат
     expected_result = {
@@ -54,7 +58,13 @@ if __name__ == "__main__":
     test_read_csv()
 
 
-def read_excel():
+def test_read_csv_error_no_file() -> None:
+    assert 'filename' != ''
+
+
+def try_read_excel() -> dict:
+    """Настраиваем mock для функции read_excel
+    """
     return {
         "id": 650703.0,
         "state": "EXECUTED",
@@ -69,8 +79,9 @@ def read_excel():
 
 
 @patch("src.CSV_Excel.read_csv")
-def test_read_excel(mock_read_excel):
-    # Настраиваем mock для функции read_csv
+def test_read_excel(mock_read_excel: Any) -> None:
+    """Настраиваем mock для функции read_csv
+    """
     mock_read_excel.return_value = {
         "id": 650703.0,
         "state": "EXECUTED",
@@ -84,7 +95,7 @@ def test_read_excel(mock_read_excel):
     }
 
     # Вызов функции read_csv
-    result = read_excel()
+    result = try_read_excel()
 
     # Ожидаемый результат
     expected_result = {

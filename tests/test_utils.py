@@ -1,11 +1,12 @@
 import os
+from typing import Any
 
 from src.utils import get_financial_transactions
 
 print("Current working directory:", os.getcwd())
 
 
-def test_get_financial_transactions():
+def test_get_financial_transactions() -> Any:
     """Тестирует функцию открытия и считывания JSON файла"""
     assert get_financial_transactions("") == []
     assert get_financial_transactions("non_existent_file.json") == []

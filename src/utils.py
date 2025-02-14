@@ -3,7 +3,6 @@ import logging
 import os
 from typing import Any
 
-
 logger = logging.getLogger('utils')
 logger.setLevel(logging.DEBUG)
 file_handler = logging.FileHandler('logs/utils.log', encoding='utf-8', mode='w')
@@ -12,7 +11,7 @@ file_handler.setFormatter(file_formatter)
 logger.addHandler(file_handler)
 
 
-def get_financial_transactions(path: str) -> list[Any]:
+def get_financial_transactions(path: str) -> Any:
     """ Получает данные из внешнего JSON-файла и преобразовывает в объект Python
     """
     if not os.path.exists(path):

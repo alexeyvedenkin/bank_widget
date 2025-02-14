@@ -32,7 +32,7 @@ def test_for_state_and_date() -> list[dict]:
 
 
 @pytest.fixture
-def filter_by_cur():
+def filter_by_cur() -> list[dict]:
     return [
         {'id': 939719570, 'state': 'EXECUTED', 'date': '2018-06-30T02:08:58.425572',
          'operationAmount': {'amount': '9824.07', 'currency': {'name': 'USD', 'code': 'USD'}},
@@ -49,5 +49,5 @@ def filter_by_cur():
 
 
 @pytest.fixture
-def trans_des():
+def trans_des() -> list[str]:
     return ['Перевод организации', 'Перевод со счета на счет', 'Перевод с карты на карту']

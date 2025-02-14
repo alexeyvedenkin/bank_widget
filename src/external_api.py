@@ -4,7 +4,6 @@ from typing import Any, Dict, List
 import requests
 from dotenv import load_dotenv
 
-
 # Загрузка переменных окружения из .env файла
 load_dotenv()
 
@@ -12,7 +11,7 @@ load_dotenv()
 apikey = os.getenv('API_KEY')
 
 
-def currency_conversion(transaction: dict) -> float:
+def currency_conversion(transaction: dict) -> Any:
     """Принимает транзакцию и конвертирует из иностранной валюты в РУБЛИ с запросом на API сайт"""
     if "operationAmount" not in transaction:
         print("Ошибка: ключ 'operationAmount' отсутствует в транзакции")

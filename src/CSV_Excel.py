@@ -1,10 +1,9 @@
 import csv
 import logging
 import os
-from typing import Any, Dict, List
+from typing import Any
 
 import pandas as pd
-
 
 logger = logging.getLogger("CSV_Excel")
 logger.setLevel(logging.DEBUG)
@@ -31,15 +30,11 @@ def read_csv(filename: str) -> list[Any] | Any:
     with open(filename, encoding="utf-8") as file:
         reading_csv = csv.DictReader(file, delimiter=";")
         reading = [row for row in reading_csv]
-        logger.info("Окончание загрузки CSV файла")
+        # logger.info("Окончание загрузки CSV файла")
         return reading
 
 
-transaction = read_csv("transactions.csv")
-# print(transaction)
-
-
-def read_excel(filename: str) -> List[Dict[str, Any]]:
+def read_excel(filename: str) -> Any:
     """
     Function to read Excel file and return its content as a list of dictionaries
     """
@@ -51,8 +46,11 @@ def read_excel(filename: str) -> List[Dict[str, Any]]:
     # Convert DataFrame to list of dictionaries
     transactions_list = reading_excel.to_dict("records")
     logger.info("Окончание загрузки Excel файла")
+
     return transactions_list
 
 
-operation_excel = read_excel("transactions_excel.xlsx")
-# print(operation_excel)
+if __name__ == '__main__':
+    print(*read_csv("transactions.csv")[:5], sep='\n')
+    print()
+    print(*read_excel("transactions_excel.xlsx")[:5], sep='\n')

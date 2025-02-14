@@ -1,6 +1,7 @@
+import os
+from typing import Any
 from unittest.mock import patch
 
-import os
 import pytest
 
 from src.external_api import currency_conversion, process_all_transactions
@@ -45,7 +46,7 @@ test_lst = [
 
 
 @patch("requests.get")
-def test_currency_conversion(mock_get):
+def test_currency_conversion(mock_get: Any) -> None:
     mock_get.return_value.status_code = 100
     mock_get.return_value.json.return_value = {'success': True, 'timestamp': 1720199764, 'base': 'USD',
                                                'date': '2024-07-05',
@@ -56,12 +57,12 @@ def test_currency_conversion(mock_get):
 wrong_api = '123'
 
 
-def test_currency_conversion_not_apikey():
+def test_currency_conversion_not_apikey() -> None:
     if wrong_api != os.getenv("API_KEY") or not os.getenv("API_KEY"):
         pytest.raises(AssertionError, match="Ошибка: API ключ не найден. Убедитесь, что он задан в .env файле.")
 
 
-def test_process_all_transactions():
+def test_process_all_transactions() -> None:
     assert type(process_all_transactions(test_lst)) == list
 #
 #
